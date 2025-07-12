@@ -97,6 +97,20 @@ const Home = () => {
                 that align perfectly with your interests, skills, and aspirations.
               </p>
             </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                Start Your Journey
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => setIsVideoPlaying(true)}
+                className="border-2 border-white/30 hover:border-white/50 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/10 flex items-center justify-center gap-2"
+              >
+                <Play className="w-5 h-5" />
+                Watch Demo
+              </button>
+            </div>
     </div>
   )
 }
