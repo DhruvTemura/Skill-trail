@@ -27,7 +27,7 @@ const Home = () => {
     }
   ];
 
-    const testimonials = [
+  const testimonials = [
     {
       name: "Sarah Chen",
       role: "Data Scientist at Google",
