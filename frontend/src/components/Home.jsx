@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Target, TrendingUp, Users, Star, CheckCircle, Play } from 'lucide-react';
 
 const Home = () => {
@@ -71,9 +72,9 @@ const Home = () => {
               <a href="#features" className="hover:text-blue-400 transition-colors">Features</a>
               <a href="#how-it-works" className="hover:text-blue-400 transition-colors">How It Works</a>
               <a href="#testimonials" className="hover:text-blue-400 transition-colors">Success Stories</a>
-              <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105">
+              <Link to="/profile" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -99,10 +100,10 @@ const Home = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+              <Link to="/profile" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2">
                 Start Your Journey
                 <ArrowRight className="w-5 h-5" />
-              </button>
+              </Link>
               <button 
                 onClick={() => setIsVideoPlaying(true)}
                 className="border-2 border-white/30 hover:border-white/50 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/10 flex items-center justify-center gap-2"
