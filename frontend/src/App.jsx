@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileForm from './components/ProfileForm';
+import Home from './components/Home'
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ProfileForm />
+      <Home></Home>
     </div>
   );
 }

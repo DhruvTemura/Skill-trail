@@ -78,6 +78,25 @@ const Home = () => {
           </div>
         </div>
       </nav>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                Discover Your
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  {" "}Perfect Career
+                </span>
+                <br />
+                with AI Precision
+              </h1>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Let our advanced AI analyze your unique profile and unlock personalized career paths 
+                that align perfectly with your interests, skills, and aspirations.
+              </p>
+            </div>
     </div>
   )
 }
