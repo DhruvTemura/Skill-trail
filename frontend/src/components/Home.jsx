@@ -111,6 +111,16 @@ const Home = () => {
                 Watch Demo
               </button>
             </div>
+
+            <div className="flex items-center gap-8 pt-4">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl font-bold text-blue-400">{stat.number}</div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
     </div>
   )
 }
