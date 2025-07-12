@@ -223,6 +223,35 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl font-bold">Success Stories</h2>
+            <p className="text-xl text-gray-300">
+              See how CareerGenie transformed careers
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4 italic">"{testimonial.content}"</p>
+                <div>
+                  <div className="font-semibold">{testimonial.name}</div>
+                  <div className="text-sm text-gray-400">{testimonial.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
