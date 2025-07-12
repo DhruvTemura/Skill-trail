@@ -121,6 +121,42 @@ const Home = () => {
               ))}
             </div>
           </div>
+
+          <div className="relative">
+            <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-3xl p-8 backdrop-blur-sm border border-white/10">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                  <span className="text-green-400 font-semibold">AI Analysis Complete</span>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span>Data Scientist</span>
+                    <span className="text-green-400 font-semibold">94% Match</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-green-400 to-blue-400 h-2 rounded-full w-[94%]"></div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>UX Designer</span>
+                    <span className="text-blue-400 font-semibold">87% Match</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-2 rounded-full w-[87%]"></div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Product Manager</span>
+                    <span className="text-purple-400 font-semibold">82% Match</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-purple-400 to-pink-400 h-2 rounded-full w-[82%]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
