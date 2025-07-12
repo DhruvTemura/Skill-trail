@@ -47,4 +47,11 @@ const Home = () => {
       rating: 5
     }
   ];
+
+  const stats = [
+    {number: '50k+', label: 'Careers Matched'},
+    {number: '95%', label: 'Success Rate'},
+    {number: '200%', label: 'Career Paths'},
+    {number: '4.9/5', label: 'User Rating'}
+  ];
 }
