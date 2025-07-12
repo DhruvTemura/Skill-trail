@@ -282,5 +282,7 @@ const Home = () => {
         </div>
       </footer>
     </div>
-  )
-}
+  );
+};
+
+export default Home;
