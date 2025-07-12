@@ -261,10 +261,10 @@ const Home = () => {
           <p className="text-xl">
             Join thousands of professionals who've found their perfect career path with CareerGenie
           </p>
-          <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 flex items-center gap-2 mx-auto">
+          <Link to="/profile" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 flex items-center gap-2 mx-auto">
             Start Your Free Assessment
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
       </section>
 
