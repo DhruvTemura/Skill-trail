@@ -266,6 +266,21 @@ const Home = () => {
           </button>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-black/40 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center space-x-2 mb-8">
+            <Brain className="w-8 h-8 text-blue-400" />
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              CareerGenie
+            </span>
+          </div>
+          <div className="text-center text-gray-400">
+            <p>&copy; 2025 CareerGenie. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
