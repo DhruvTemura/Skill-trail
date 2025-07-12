@@ -180,6 +180,49 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* How it Works Section*/}
+      <section id='how-it-works' className='py-20 px-4 sm:px-6 lg:px-8 bg-black/20'>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl font-bold">How It Works</h2>
+            <p className="text-xl text-gray-300">
+              Simple steps to unlock your career potential
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Complete Your Profile",
+                description: "Share your interests, skills, education, and work preferences through our comprehensive assessment."
+              },
+              {
+                step: "02",
+                title: "Get AI Recommendations",
+                description: "Our advanced ML algorithms analyze your profile and match you with the most suitable career paths."
+              },
+              {
+                step: "03",
+                title: "Follow Your Learning Path",
+                description: "Receive a personalized roadmap with courses, resources, and timelines to achieve your career goals."
+              }
+            ].map((step, index) => (
+              <div key={index} className="text-center relative">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  {step.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-300">{step.description}</p>
+                {index < 2 && (
+                  <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transform -translate-x-1/2"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
