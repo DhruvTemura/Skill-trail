@@ -252,6 +252,20 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-700">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h2 className="text-4xl font-bold">Ready to Transform Your Career?</h2>
+          <p className="text-xl">
+            Join thousands of professionals who've found their perfect career path with CareerGenie
+          </p>
+          <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 flex items-center gap-2 mx-auto">
+            Start Your Free Assessment
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
     </div>
   )
 }
