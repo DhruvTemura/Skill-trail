@@ -56,6 +56,28 @@ const Home = () => {
   ];
 
   return (
-    
+    <div className='min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white'>
+        {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/10 backdrop-blur-md border-b border-white/20 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              <Brain className="w-8 h-8 text-blue-400" />
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                CareerGenie
+              </span>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="hover:text-blue-400 transition-colors">Features</a>
+              <a href="#how-it-works" className="hover:text-blue-400 transition-colors">How It Works</a>
+              <a href="#testimonials" className="hover:text-blue-400 transition-colors">Success Stories</a>
+              <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105">
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   )
 }
