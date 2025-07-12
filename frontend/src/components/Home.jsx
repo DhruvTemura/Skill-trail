@@ -54,4 +54,8 @@ const Home = () => {
     {number: '200%', label: 'Career Paths'},
     {number: '4.9/5', label: 'User Rating'}
   ];
+
+  return (
+    
+  )
 }
