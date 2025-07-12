@@ -26,4 +26,25 @@ const Home = () => {
       description: "Join thousands who've transformed their careers with our personalized guidance"
     }
   ];
+
+    const testimonials = [
+    {
+      name: "Sarah Chen",
+      role: "Data Scientist at Google",
+      content: "This platform helped me transition from marketing to data science. The learning path was spot-on!",
+      rating: 5
+    },
+    {
+      name: "Michael Rodriguez",
+      role: "UX Designer at Spotify",
+      content: "The AI recommendations opened my eyes to careers I never considered. Now I'm living my dream job!",
+      rating: 5
+    },
+    {
+      name: "Priya Sharma",
+      role: "Product Manager at Microsoft",
+      content: "The personalized roadmap saved me months of confusion. Clear, actionable, and effective.",
+      rating: 5
+    }
+  ];
 }
