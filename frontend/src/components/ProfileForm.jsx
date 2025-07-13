@@ -476,3 +476,18 @@ const ProfileForm = () => {
             );
           })}
         </div>
+
+        {/* Step Content */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold mb-2">{getStepTitle(currentStep)}</h2>
+            <p className="text-gray-300">
+              {currentStep === 1 && "Let's start with some basic information about you."}
+              {currentStep === 2 && "Help us understand what you're passionate about."}
+              {currentStep === 3 && "Tell us about your current skills and expertise."}
+              {currentStep === 4 && "What kind of work environment do you prefer?"}
+              {currentStep === 5 && "What are you looking to achieve in your career?"}
+            </p>
+          </div>
+
+          {renderStep()}
