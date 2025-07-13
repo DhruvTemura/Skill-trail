@@ -46,3 +46,16 @@ const ProfileForm = () => {
     { id: 'research', label: 'Research & Development', icon: '🔬' },
     { id: 'social', label: 'Social Impact & NGO', icon: '🤝' }
   ];
+
+  const technicalSkillOptions = [
+    'Python', 'JavaScript', 'React', 'Node.js', 'SQL', 'Machine Learning', 
+    'Data Analysis', 'UI/UX Design', 'Project Management', 'Digital Marketing',
+    'Cloud Computing', 'Cybersecurity', 'Mobile Development', 'DevOps',
+    'Blockchain', 'AI/ML', 'Data Science', 'Web Development'
+  ];
+
+  const softSkillOptions = [
+    'Leadership', 'Communication', 'Problem Solving', 'Critical Thinking',
+    'Creativity', 'Teamwork', 'Time Management', 'Adaptability',
+    'Emotional Intelligence', 'Negotiation', 'Public Speaking', 'Mentoring'
+  ];
