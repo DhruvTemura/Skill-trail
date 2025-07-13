@@ -78,3 +78,19 @@ const ProfileForm = () => {
     'Entertainment', 'Automotive', 'Aerospace', 'Energy', 'Real Estate',
     'Consulting', 'Government', 'Non-profit', 'Agriculture', 'Fashion'
   ];
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleMultiSelect = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: prev[field].includes(value)
+        ? prev[field].filter(item => item !== value)
+        : [...prev[field], value]
+    }));
+  };
