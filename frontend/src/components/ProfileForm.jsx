@@ -94,3 +94,21 @@ const ProfileForm = () => {
         : [...prev[field], value]
     }));
   };
+
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log('Form submitted:', formData);
+    // Here you would typically send the data to your backend
+    alert('Profile submitted successfully! Redirecting to recommendations...');
+  };
