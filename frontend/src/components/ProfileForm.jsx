@@ -440,3 +440,39 @@ const ProfileForm = () => {
           </div>
         </div>
       </div>
+
+      {/* Progress Bar */}
+      <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-8">
+          {[...Array(totalSteps)].map((_, index) => {
+            const stepNumber = index + 1;
+            const isActive = stepNumber === currentStep;
+            const isCompleted = stepNumber < currentStep;
+            const isAccessible = stepNumber <= currentStep;
+
+            return (
+              <div key={stepNumber} className="flex items-center">
+                <div 
+                  className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all ${
+                    isCompleted 
+                      ? 'bg-green-500 border-green-500' 
+                      : isActive 
+                        ? 'bg-blue-500 border-blue-500' 
+                        : 'border-white/30 bg-white/10'
+                  }`}
+                >
+                  {isCompleted ? (
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  ) : (
+                    getStepIcon(stepNumber)
+                  )}
+                </div>
+                {stepNumber < totalSteps && (
+                  <div className={`w-16 h-1 mx-2 ${
+                    stepNumber < currentStep ? 'bg-green-500' : 'bg-white/20'
+                  }`} />
+                )}
+              </div>
+            );
+          })}
+        </div>
