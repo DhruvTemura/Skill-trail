@@ -72,3 +72,9 @@ const ProfileForm = () => {
     { id: 'innovation', label: 'Innovation & Technology', icon: '🚀' },
     { id: 'entrepreneurship', label: 'Entrepreneurship', icon: '💼' }
   ];
+
+  const industryOptions = [
+    'Technology', 'Healthcare', 'Finance', 'Education', 'E-commerce',
+    'Entertainment', 'Automotive', 'Aerospace', 'Energy', 'Real Estate',
+    'Consulting', 'Government', 'Non-profit', 'Agriculture', 'Fashion'
+  ];
