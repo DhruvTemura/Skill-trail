@@ -235,3 +235,46 @@ const ProfileForm = () => {
             </div>
           </div>
         );
+
+      case 3:
+        return (
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Technical Skills</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+                {technicalSkillOptions.map(skill => (
+                  <div
+                    key={skill}
+                    onClick={() => handleMultiSelect('technicalSkills', skill)}
+                    className={`p-3 rounded-lg border cursor-pointer transition-all text-center ${
+                      formData.technicalSkills.includes(skill)
+                        ? 'border-blue-500 bg-blue-500/20'
+                        : 'border-white/20 bg-white/10 hover:border-white/40'
+                    }`}
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Soft Skills</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+                {softSkillOptions.map(skill => (
+                  <div
+                    key={skill}
+                    onClick={() => handleMultiSelect('softSkills', skill)}
+                    className={`p-3 rounded-lg border cursor-pointer transition-all text-center ${
+                      formData.softSkills.includes(skill)
+                        ? 'border-green-500 bg-green-500/20'
+                        : 'border-white/20 bg-white/10 hover:border-white/40'
+                    }`}
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
