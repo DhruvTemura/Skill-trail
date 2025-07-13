@@ -547,3 +547,18 @@ const ProfileForm = () => {
             )}
           </div>
         </div>
+
+        {/* Help Section */}
+        <div className="mt-8 p-6 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+          <h3 className="font-semibold mb-2">💡 Tips for better recommendations:</h3>
+          <ul className="text-sm text-gray-300 space-y-1">
+            <li>• Be honest about your current skills and experience</li>
+            <li>• Select all interests that genuinely excite you</li>
+            <li>• Consider both your strengths and areas you'd like to develop</li>
+            <li>• Think about your ideal work environment and lifestyle</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
