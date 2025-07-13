@@ -423,3 +423,20 @@ const ProfileForm = () => {
         return false;
     }
   };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+      {/* Header */}
+      <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-4xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Brain className="w-8 h-8 text-blue-400" />
+              <h1 className="text-2xl font-bold">Career Assessment</h1>
+            </div>
+            <div className="text-sm text-gray-400">
+              Step {currentStep} of {totalSteps}
+            </div>
+          </div>
+        </div>
+      </div>
