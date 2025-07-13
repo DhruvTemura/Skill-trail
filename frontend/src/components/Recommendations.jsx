@@ -326,3 +326,33 @@ const Recommendations = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Confidence Bar */}
+                <div className="mb-4">
+                  <div className="w-full bg-white/20 rounded-full h-2">
+                    <div 
+                      className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000"
+                      style={{ width: getConfidenceWidth(career.confidence) }}
+                    />
+                  </div>
+                </div>
+
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="flex items-center gap-2">
+                    <DollarSign className="w-4 h-4 text-green-400" />
+                    <span className="text-sm">{career.salaryRange}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-blue-400" />
+                    <span className="text-sm">{career.jobGrowth}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4 text-purple-400" />
+                    <span className="text-sm">{career.workStyle}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-orange-400" />
+                    <span className="text-sm">{career.location}</span>
+                  </div>
+                </div>
