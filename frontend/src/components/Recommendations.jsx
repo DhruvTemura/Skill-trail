@@ -437,3 +437,21 @@ const Recommendations = () => {
             </div>
           ))}
         </div>
+
+        {/* Call to Action */}
+        <div className="mt-12 text-center">
+          <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 border border-blue-500/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Choose a career path that excites you and get a personalized learning roadmap to help you achieve your goals.
+            </p>
+            <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg font-semibold transition-all">
+              Create Learning Path
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
