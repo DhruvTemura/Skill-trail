@@ -359,3 +359,140 @@ const LearningPath = () => {
             </div>
           </div>
         </div>
+
+        {/* Learning Modules */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden">
+          <div className="p-6 border-b border-white/20">
+            <h2 className="text-2xl font-bold">Learning Modules</h2>
+            <p className="text-gray-300 mt-2">Follow these modules in order to master your chosen career path</p>
+          </div>
+
+          <div className="divide-y divide-white/20">
+            {currentPath.modules.map((module, index) => (
+              <div key={module.id} className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-4">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      completedModules.includes(module.id) 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-white/20 text-gray-300'
+                    }`}>
+                      {completedModules.includes(module.id) ? (
+                        <CheckCircle className="w-5 h-5" />
+                      ) : (
+                        <span className="font-semibold">{index + 1}</span>
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold">{module.title}</h3>
+                      <p className="text-gray-300">{module.description}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-right">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Clock className="w-4 h-4 text-gray-400" />
+                        <span className="text-sm">{module.duration}</span>
+                      </div>
+                      <div className={`px-2 py-1 rounded text-xs ${getDifficultyColor(module.difficulty)}`}>
+                        {module.difficulty}
+                      </div>
+                    </div>
+                    <button 
+                      onClick={() => toggleModule(module.id)}
+                      className="p-2 hover:bg-white/20 rounded-lg transition-all"
+                    >
+                      {activeModule === module.id ? (
+                        <ChevronDown className="w-5 h-5" />
+                      ) : (
+                        <ChevronRight className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {activeModule === module.id && (
+                  <div className="mt-6 pl-14">
+                    <div className="grid lg:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold mb-3">Topics Covered</h4>
+                        <ul className="space-y-2 mb-6">
+                          {module.topics.map((topic, idx) => (
+                            <li key={idx} className="flex items-center gap-2 text-sm">
+                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                              {topic}
+                            </li>
+                          ))}
+                        </ul>
+
+                        <h4 className="font-semibold mb-3">Projects</h4>
+                        <div className="space-y-2">
+                          {module.projects.map((project, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-sm bg-white/10 rounded-lg p-2">
+                              <Target className="w-4 h-4 text-purple-400" />
+                              {project}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold mb-3">Learning Resources</h4>
+                        <div className="space-y-3">
+                          {module.resources.map((resource, idx) => (
+                            <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 rounded-lg">
+                              <div className="text-blue-400">
+                                {getResourceIcon(resource.type)}
+                              </div>
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{resource.title}</p>
+                                <p className="text-xs text-gray-400">{resource.provider} • {resource.duration}</p>
+                              </div>
+                              <button className="text-blue-400 hover:text-blue-300">
+                                <ArrowRight className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-white/20 flex items-center justify-between">
+                      <div>
+                        {module.prerequisites.length > 0 && (
+                          <div>
+                            <p className="text-sm text-gray-400 mb-1">Prerequisites:</p>
+                            <div className="flex flex-wrap gap-1">
+                              {module.prerequisites.map(prereq => (
+                                <span key={prereq} className="px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs">
+                                  {prereq}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <button className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all">
+                          <PlayCircle className="w-4 h-4" />
+                          Start Module
+                        </button>
+                        <button 
+                          onClick={() => markComplete(module.id)}
+                          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                            completedModules.includes(module.id)
+                              ? 'bg-green-500 text-white'
+                              : 'bg-blue-500 hover:bg-blue-600'
+                          }`}
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                          {completedModules.includes(module.id) ? 'Completed' : 'Mark Complete'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
