@@ -496,3 +496,29 @@ const LearningPath = () => {
             ))}
           </div>
         </div>
+
+        {/* Call to Action */}
+        <div className="mt-12 text-center">
+          <div className="bg-gradient-to-r from-purple-500/20 to-blue-600/20 border border-purple-500/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold mb-4">Ready to Begin Your Journey?</h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Start with the first module and build your skills step by step. Remember, consistency is key to success!
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 rounded-lg font-semibold transition-all">
+                Start Learning
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <button className="inline-flex items-center gap-2 px-8 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-semibold transition-all">
+                <Calendar className="w-5 h-5" />
+                Schedule Study Time
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LearningPath;
