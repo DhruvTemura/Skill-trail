@@ -172,3 +172,25 @@ const LearningPath = () => {
       ]
     }
   };
+
+  const currentPath = learningPaths[selectedCareer];
+  const completionPercentage = (completedModules.length / currentPath.totalModules) * 100;
+
+  const toggleModule = (moduleId) => {
+    setActiveModule(activeModule === moduleId ? null : moduleId);
+  };
+
+  const markComplete = (moduleId) => {
+    if (!completedModules.includes(moduleId)) {
+      setCompletedModules([...completedModules, moduleId]);
+    }
+  };
+
+  const getDifficultyColor = (difficulty) => {
+    switch(difficulty.toLowerCase()) {
+      case 'beginner': return 'text-green-400 bg-green-500/20';
+      case 'intermediate': return 'text-yellow-400 bg-yellow-500/20';
+      case 'advanced': return 'text-red-400 bg-red-500/20';
+      default: return 'text-gray-400 bg-gray-500/20';
+    }
+  };
