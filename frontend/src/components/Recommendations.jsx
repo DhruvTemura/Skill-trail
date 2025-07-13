@@ -372,3 +372,19 @@ const Recommendations = () => {
                     ))}
                   </ul>
                 </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={() => toggleDetails(career.id)}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all"
+                  >
+                    <BookOpen className="w-4 h-4" />
+                    {showDetails[career.id] ? 'Hide Details' : 'View Details'}
+                  </button>
+                  <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg transition-all">
+                    <Target className="w-4 h-4" />
+                    Get Learning Path
+                  </button>
+                </div>
+              </div>
