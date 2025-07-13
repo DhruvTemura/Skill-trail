@@ -59,3 +59,16 @@ const ProfileForm = () => {
     'Creativity', 'Teamwork', 'Time Management', 'Adaptability',
     'Emotional Intelligence', 'Negotiation', 'Public Speaking', 'Mentoring'
   ];
+
+  const careerGoalOptions = [
+    { id: 'high-salary', label: 'High Salary Potential', icon: '💰' },
+    { id: 'work-life-balance', label: 'Work-Life Balance', icon: '⚖️' },
+    { id: 'creative-freedom', label: 'Creative Freedom', icon: '🎨' },
+    { id: 'leadership', label: 'Leadership Opportunities', icon: '👑' },
+    { id: 'remote-work', label: 'Remote Work Options', icon: '🏠' },
+    { id: 'continuous-learning', label: 'Continuous Learning', icon: '📖' },
+    { id: 'social-impact', label: 'Social Impact', icon: '🌍' },
+    { id: 'job-security', label: 'Job Security', icon: '🔒' },
+    { id: 'innovation', label: 'Innovation & Technology', icon: '🚀' },
+    { id: 'entrepreneurship', label: 'Entrepreneurship', icon: '💼' }
+  ];
