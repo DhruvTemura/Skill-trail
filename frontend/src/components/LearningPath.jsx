@@ -329,3 +329,33 @@ const LearningPath = () => {
                 <p className="text-sm text-gray-300">of {currentPath.totalModules} modules completed</p>
               </div>
             </div>
+
+            {/* Career Outcome */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Star className="w-6 h-6 text-yellow-400" />
+                <h3 className="text-xl font-semibold">Career Outcome</h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-sm text-gray-300">Average Salary</p>
+                  <p className="font-semibold text-green-400">{currentPath.careerOutcome.avgSalary}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-300">Job Growth</p>
+                  <p className="font-semibold text-blue-400">{currentPath.careerOutcome.jobGrowth}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-300 mb-2">Top Skills</p>
+                  <div className="flex flex-wrap gap-1">
+                    {currentPath.careerOutcome.topSkills.map(skill => (
+                      <span key={skill} className="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
