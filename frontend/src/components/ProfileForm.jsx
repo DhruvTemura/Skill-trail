@@ -491,3 +491,59 @@ const ProfileForm = () => {
           </div>
 
           {renderStep()}
+
+          {/* Navigation */}
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-white/20">
+            <button
+              onClick={prevStep}
+              disabled={currentStep === 1}
+              className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                currentStep === 1
+                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                  : 'bg-white/20 hover:bg-white/30 text-white'
+              }`}
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Previous
+            </button>
+
+            <div className="flex items-center gap-2">
+              {[...Array(totalSteps)].map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${
+                    index + 1 === currentStep ? 'bg-blue-500' : 'bg-white/30'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {currentStep === totalSteps ? (
+              <button
+                onClick={handleSubmit}
+                disabled={!isStepComplete()}
+                className={`flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all ${
+                  isStepComplete()
+                    ? 'bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white'
+                    : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                }`}
+              >
+                Complete Assessment
+                <Star className="w-5 h-5" />
+              </button>
+            ) : (
+              <button
+                onClick={nextStep}
+                disabled={!isStepComplete()}
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                  isStepComplete()
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white'
+                    : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                }`}
+              >
+                Next
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+        </div>
