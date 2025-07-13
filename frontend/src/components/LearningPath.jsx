@@ -257,3 +257,50 @@ const LearningPath = () => {
             ))}
           </div>
         </div>
+
+        {/* Path Overview */}
+        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+          <div className="lg:col-span-2">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="w-6 h-6 text-purple-400" />
+                <h2 className="text-2xl font-bold">{currentPath.title}</h2>
+              </div>
+              <p className="text-gray-300 mb-6">{currentPath.description}</p>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-blue-400" />
+                    <div>
+                      <p className="font-semibold">Duration</p>
+                      <p className="text-sm text-gray-300">{currentPath.duration}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <BarChart3 className="w-5 h-5 text-green-400" />
+                    <div>
+                      <p className="font-semibold">Difficulty</p>
+                      <p className="text-sm text-gray-300">{currentPath.difficulty}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <BookOpen className="w-5 h-5 text-yellow-400" />
+                    <div>
+                      <p className="font-semibold">Total Modules</p>
+                      <p className="text-sm text-gray-300">{currentPath.totalModules} modules</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Timer className="w-5 h-5 text-purple-400" />
+                    <div>
+                      <p className="font-semibold">Study Hours</p>
+                      <p className="text-sm text-gray-300">{currentPath.estimatedHours} hours</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
