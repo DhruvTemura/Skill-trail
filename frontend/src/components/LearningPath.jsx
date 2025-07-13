@@ -206,3 +206,30 @@ const LearningPath = () => {
       default: return <Link className="w-4 h-4" />;
     }
   };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+      {/* Header */}
+      <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Target className="w-8 h-8 text-purple-400" />
+              <div>
+                <h1 className="text-3xl font-bold">Learning Path</h1>
+                <p className="text-gray-300">Your personalized roadmap to career success</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all">
+                <Share2 className="w-4 h-4" />
+                Share Path
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-lg transition-all">
+                <Download className="w-4 h-4" />
+                Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
