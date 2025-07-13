@@ -218,3 +218,53 @@ const Recommendations = () => {
           </div>
         </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Profile Summary */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 mb-8">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-xl font-bold">{userProfile.name.split(' ').map(n => n[0]).join('')}</span>
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold">{userProfile.name}</h2>
+              <p className="text-gray-300">Profile analyzed successfully</p>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-4 mt-6">
+            <div>
+              <h3 className="font-semibold text-sm text-gray-300 mb-2">TOP INTERESTS</h3>
+              <div className="flex flex-wrap gap-1">
+                {userProfile.interests.map(interest => (
+                  <span key={interest} className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-gray-300 mb-2">KEY SKILLS</h3>
+              <div className="flex flex-wrap gap-1">
+                {userProfile.skills.slice(0, 3).map(skill => (
+                  <span key={skill} className="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">
+                    {skill}
+                  </span>
+                ))}
+                {userProfile.skills.length > 3 && (
+                  <span className="px-2 py-1 bg-gray-500/20 text-gray-400 rounded text-xs">
+                    +{userProfile.skills.length - 3} more
+                  </span>
+                )}
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-gray-300 mb-2">WORK STYLE</h3>
+              <p className="text-sm capitalize">{userProfile.preferences.workStyle} • {userProfile.preferences.workLocation}</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-gray-300 mb-2">RECOMMENDATIONS</h3>
+              <p className="text-sm">{filteredRecommendations.length} matches found</p>
+            </div>
+          </div>
+        </div>
