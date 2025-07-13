@@ -165,3 +165,29 @@ const Recommendations = () => {
       companies: ["AWS", "Docker", "HashiCorp", "GitLab", "Datadog"]
     }
   ];
+
+  const filteredRecommendations = careerRecommendations
+    .filter(career => filterBy === 'all' || career.category.toLowerCase() === filterBy)
+    .sort((a, b) => {
+      if (sortBy === 'confidence') return b.confidence - a.confidence;
+      if (sortBy === 'salary') return b.salaryRange.localeCompare(a.salaryRange);
+      return a.title.localeCompare(b.title);
+    });
+
+  const toggleDetails = (id) => {
+    setShowDetails(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  const getConfidenceColor = (confidence) => {
+    if (confidence >= 90) return 'text-green-400 bg-green-500/20';
+    if (confidence >= 75) return 'text-blue-400 bg-blue-500/20';
+    if (confidence >= 60) return 'text-yellow-400 bg-yellow-500/20';
+    return 'text-gray-400 bg-gray-500/20';
+  };
+
+  const getConfidenceWidth = (confidence) => {
+    return `${confidence}%`;
+  };
