@@ -356,3 +356,19 @@ const Recommendations = () => {
                     <span className="text-sm">{career.location}</span>
                   </div>
                 </div>
+
+                {/* Match Reasons */}
+                <div className="mb-4">
+                  <h4 className="font-semibold text-sm mb-2 flex items-center gap-2">
+                    <Lightbulb className="w-4 h-4 text-yellow-400" />
+                    Why this matches you:
+                  </h4>
+                  <ul className="space-y-1">
+                    {career.matchReasons.slice(0, 2).map((reason, index) => (
+                      <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
+                        <CheckCircle className="w-3 h-3 text-green-400 mt-0.5 flex-shrink-0" />
+                        {reason}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
