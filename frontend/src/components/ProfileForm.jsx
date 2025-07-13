@@ -278,3 +278,67 @@ const ProfileForm = () => {
             </div>
           </div>
         );
+
+      case 4:
+        return (
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Work Style</label>
+                <select
+                  value={formData.workStyle}
+                  onChange={(e) => handleInputChange('workStyle', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select work style</option>
+                  <option value="individual">Individual Work</option>
+                  <option value="team">Team Work</option>
+                  <option value="both">Both</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Work Location</label>
+                <select
+                  value={formData.workLocation}
+                  onChange={(e) => handleInputChange('workLocation', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select work location</option>
+                  <option value="remote">Remote</option>
+                  <option value="office">Office</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Team Size Preference</label>
+                <select
+                  value={formData.teamSize}
+                  onChange={(e) => handleInputChange('teamSize', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select team size</option>
+                  <option value="small">Small (2-5 people)</option>
+                  <option value="medium">Medium (6-15 people)</option>
+                  <option value="large">Large (16+ people)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Work Environment</label>
+                <select
+                  value={formData.workEnvironment}
+                  onChange={(e) => handleInputChange('workEnvironment', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select environment</option>
+                  <option value="startup">Startup (Fast-paced, Dynamic)</option>
+                  <option value="corporate">Corporate (Structured, Stable)</option>
+                  <option value="agency">Agency (Client-focused, Varied)</option>
+                  <option value="freelance">Freelance (Independent, Flexible)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        );
