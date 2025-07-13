@@ -342,3 +342,67 @@ const ProfileForm = () => {
             </div>
           </div>
         );
+
+      case 5:
+        return (
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">What are your primary career goals?</h3>
+              <div className="grid md:grid-cols-2 gap-3">
+                {careerGoalOptions.map(goal => (
+                  <div
+                    key={goal.id}
+                    onClick={() => handleMultiSelect('careerGoals', goal.id)}
+                    className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                      formData.careerGoals.includes(goal.id)
+                        ? 'border-purple-500 bg-purple-500/20'
+                        : 'border-white/20 bg-white/10 hover:border-white/40'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{goal.icon}</span>
+                      <span className="font-medium">{goal.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Time Commitment for Learning</label>
+                <select
+                  value={formData.timeCommitment}
+                  onChange={(e) => handleInputChange('timeCommitment', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select time commitment</option>
+                  <option value="1-5">1-5 hours per week</option>
+                  <option value="6-10">6-10 hours per week</option>
+                  <option value="11-20">11-20 hours per week</option>
+                  <option value="20+">20+ hours per week</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Preferred Industries</label>
+                <select
+                  multiple
+                  value={formData.preferredIndustries}
+                  onChange={(e) => handleInputChange('preferredIndustries', Array.from(e.target.selectedOptions, option => option.value))}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                  size="4"
+                >
+                  {industryOptions.map(industry => (
+                    <option key={industry} value={industry}>{industry}</option>
+                  ))}
+                </select>
+                <p className="text-sm text-gray-400 mt-1">Hold Ctrl/Cmd to select multiple</p>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
