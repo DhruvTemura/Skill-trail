@@ -112,3 +112,20 @@ const ProfileForm = () => {
     // Here you would typically send the data to your backend
     alert('Profile submitted successfully! Redirecting to recommendations...');
   };
+
+  const getStepIcon = (step) => {
+    const icons = [User, GraduationCap, Brain, Briefcase, Target];
+    const Icon = icons[step - 1];
+    return <Icon className="w-6 h-6" />;
+  };
+
+  const getStepTitle = (step) => {
+    const titles = [
+      'Personal Information',
+      'Interests & Passions',
+      'Skills Assessment',
+      'Work Preferences',
+      'Career Goals'
+    ];
+    return titles[step - 1];
+  };
