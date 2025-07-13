@@ -304,3 +304,28 @@ const LearningPath = () => {
               </div>
             </div>
           </div>
+
+          <div className="space-y-6">
+            {/* Progress Card */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="w-6 h-6 text-green-400" />
+                <h3 className="text-xl font-semibold">Progress</h3>
+              </div>
+              <div className="mb-4">
+                <div className="flex justify-between text-sm mb-2">
+                  <span>Completion</span>
+                  <span>{Math.round(completionPercentage)}%</span>
+                </div>
+                <div className="w-full bg-white/20 rounded-full h-3">
+                  <div 
+                    className="bg-gradient-to-r from-green-500 to-blue-500 h-3 rounded-full transition-all duration-1000"
+                    style={{ width: `${completionPercentage}%` }}
+                  />
+                </div>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-green-400">{completedModules.length}</p>
+                <p className="text-sm text-gray-300">of {currentPath.totalModules} modules completed</p>
+              </div>
+            </div>
