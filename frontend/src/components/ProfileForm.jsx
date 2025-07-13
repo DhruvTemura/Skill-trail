@@ -208,3 +208,30 @@ const ProfileForm = () => {
             </div>
           </div>
         );
+
+      case 2:
+        return (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">What are your main interests? (Select all that apply)</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {interestOptions.map(interest => (
+                  <div
+                    key={interest.id}
+                    onClick={() => handleMultiSelect('interests', interest.id)}
+                    className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                      formData.interests.includes(interest.id)
+                        ? 'border-blue-500 bg-blue-500/20'
+                        : 'border-white/20 bg-white/10 hover:border-white/40'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{interest.icon}</span>
+                      <span className="font-medium">{interest.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
