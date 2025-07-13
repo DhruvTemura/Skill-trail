@@ -406,3 +406,20 @@ const ProfileForm = () => {
         return null;
     }
   };
+
+  const isStepComplete = () => {
+    switch (currentStep) {
+      case 1:
+        return formData.name && formData.age && formData.education && formData.currentStatus;
+      case 2:
+        return formData.interests.length > 0;
+      case 3:
+        return formData.technicalSkills.length > 0 || formData.softSkills.length > 0;
+      case 4:
+        return formData.workStyle && formData.workLocation;
+      case 5:
+        return formData.careerGoals.length > 0 && formData.timeCommitment;
+      default:
+        return false;
+    }
+  };
