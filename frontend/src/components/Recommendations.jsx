@@ -268,3 +268,38 @@ const Recommendations = () => {
             </div>
           </div>
         </div>
+
+        {/* Filters and Sort */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Filter className="w-4 h-4 text-gray-400" />
+              <select 
+                value={filterBy}
+                onChange={(e) => setFilterBy(e.target.value)}
+                className="px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Categories</option>
+                <option value="technology">Technology</option>
+                <option value="business">Business</option>
+                <option value="design">Design</option>
+              </select>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-400">Sort by:</span>
+              <select 
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="confidence">Match Confidence</option>
+                <option value="salary">Salary Range</option>
+                <option value="name">Name</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="text-sm text-gray-400">
+            Showing {filteredRecommendations.length} of {careerRecommendations.length} recommendations
+          </div>
+        </div>
