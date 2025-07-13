@@ -455,3 +455,5 @@ const Recommendations = () => {
     </div>
   );
 };
+
+export default Recommendations;
