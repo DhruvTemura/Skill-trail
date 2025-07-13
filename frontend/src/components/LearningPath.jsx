@@ -233,3 +233,27 @@ const LearningPath = () => {
           </div>
         </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Career Selection */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 mb-8">
+          <div className="flex items-center gap-4 mb-4">
+            <Lightbulb className="w-6 h-6 text-yellow-400" />
+            <h2 className="text-xl font-semibold">Choose Your Career Path</h2>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {careerOptions.map(career => (
+              <button
+                key={career}
+                onClick={() => setSelectedCareer(career)}
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  selectedCareer === career
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-white/20 hover:bg-white/30'
+                }`}
+              >
+                {career}
+              </button>
+            ))}
+          </div>
+        </div>
