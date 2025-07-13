@@ -194,3 +194,15 @@ const LearningPath = () => {
       default: return 'text-gray-400 bg-gray-500/20';
     }
   };
+
+  const getResourceIcon = (type) => {
+    switch(type) {
+      case 'video': return <Video className="w-4 h-4" />;
+      case 'course': return <BookOpen className="w-4 h-4" />;
+      case 'practice': return <Code className="w-4 h-4" />;
+      case 'book': return <FileText className="w-4 h-4" />;
+      case 'documentation': return <FileText className="w-4 h-4" />;
+      case 'project': return <Target className="w-4 h-4" />;
+      default: return <Link className="w-4 h-4" />;
+    }
+  };
