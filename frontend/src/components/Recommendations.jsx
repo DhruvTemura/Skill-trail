@@ -303,3 +303,26 @@ const Recommendations = () => {
             Showing {filteredRecommendations.length} of {careerRecommendations.length} recommendations
           </div>
         </div>
+
+        {/* Career Cards */}
+        <div className="grid lg:grid-cols-2 gap-6">
+          {filteredRecommendations.map((career) => (
+            <div key={career.id} className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden hover:border-white/30 transition-all">
+              {/* Card Header */}
+              <div className="p-6 pb-4">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-bold">{career.title}</h3>
+                      <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">
+                        {career.category}
+                      </span>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-4">{career.description}</p>
+                  </div>
+                  <div className="ml-4 text-right">
+                    <div className={`px-3 py-1 rounded-full text-sm font-semibold ${getConfidenceColor(career.confidence)}`}>
+                      {career.confidence}% Match
+                    </div>
+                  </div>
+                </div>
