@@ -388,3 +388,52 @@ const Recommendations = () => {
                   </button>
                 </div>
               </div>
+
+               {/* Expandable Details */}
+              {showDetails[career.id] && (
+                <div className="px-6 pb-6 border-t border-white/20">
+                  <div className="grid md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <Briefcase className="w-4 h-4" />
+                        Key Responsibilities
+                      </h4>
+                      <ul className="space-y-2">
+                        {career.keyTasks.map((task, index) => (
+                          <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                            {task}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <Star className="w-4 h-4" />
+                        Required Skills
+                      </h4>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {career.skills.map(skill => (
+                          <span key={skill} className="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <Globe className="w-4 h-4" />
+                        Top Companies
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {career.companies.map(company => (
+                          <span key={company} className="px-2 py-1 bg-gray-500/20 text-gray-300 rounded text-xs">
+                            {company}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
