@@ -129,3 +129,82 @@ const ProfileForm = () => {
     ];
     return titles[step - 1];
   };
+
+  const renderStep = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Full Name</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Age</label>
+                <select
+                  value={formData.age}
+                  onChange={(e) => handleInputChange('age', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select age range</option>
+                  <option value="18-22">18-22</option>
+                  <option value="23-27">23-27</option>
+                  <option value="28-32">28-32</option>
+                  <option value="33-37">33-37</option>
+                  <option value="38+">38+</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Education Level</label>
+                <select
+                  value={formData.education}
+                  onChange={(e) => handleInputChange('education', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                >
+                  <option value="">Select education level</option>
+                  <option value="high-school">High School</option>
+                  <option value="diploma">Diploma</option>
+                  <option value="bachelors">Bachelor's Degree</option>
+                  <option value="masters">Master's Degree</option>
+                  <option value="phd">PhD</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-300 mb-2">CGPA/Percentage</label>
+                <input
+                  type="text"
+                  value={formData.cgpa}
+                  onChange={(e) => handleInputChange('cgpa', e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+                  placeholder="e.g., 8.5 or 85%"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-300 mb-2">Current Status</label>
+              <select
+                value={formData.currentStatus}
+                onChange={(e) => handleInputChange('currentStatus', e.target.value)}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+              >
+                <option value="">Select current status</option>
+                <option value="student">Student</option>
+                <option value="fresh-graduate">Fresh Graduate</option>
+                <option value="working-professional">Working Professional</option>
+                <option value="career-changer">Career Changer</option>
+                <option value="unemployed">Unemployed</option>
+              </select>
+            </div>
+          </div>
+        );
