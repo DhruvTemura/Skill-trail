@@ -1,0 +1,26 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  BookOpen, 
+  Target, 
+  Clock, 
+  Star, 
+  CheckCircle, 
+  PlayCircle, 
+  Download, 
+  Share2, 
+  Calendar,
+  TrendingUp,
+  Award,
+  Users,
+  Globe,
+  ArrowRight,
+  ChevronRight,
+  ChevronDown,
+  Lightbulb,
+  Code,
+  FileText,
+  Video,
+  Link,
+  BarChart3,
+  Timer
+} from 'lucide-react';
