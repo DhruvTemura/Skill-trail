@@ -191,3 +191,30 @@ const Recommendations = () => {
   const getConfidenceWidth = (confidence) => {
     return `${confidence}%`;
   };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+      {/* Header */}
+      <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Brain className="w-8 h-8 text-blue-400" />
+              <div>
+                <h1 className="text-3xl font-bold">Career Recommendations</h1>
+                <p className="text-gray-300">Personalized career paths based on your profile</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all">
+                <Share2 className="w-4 h-4" />
+                Share
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg transition-all">
+                <Download className="w-4 h-4" />
+                Download Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
