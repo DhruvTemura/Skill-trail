@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Brain, 
-  TrendingUp, 
-  Star, 
-  MapPin, 
-  Clock, 
-  DollarSign, 
-  Users, 
-  BookOpen, 
-  ArrowRight,
-  CheckCircle,
-  Filter,
-  Download,
-  Share2,
-  Lightbulb,
-  Target,
-  Briefcase,
-  Globe
+import {
+  Brain, TrendingUp, Star, MapPin, Clock, DollarSign, Users,
+  BookOpen, ArrowRight, CheckCircle, Filter, Download, Share2,
+  Lightbulb, Target, Briefcase, Globe
 } from 'lucide-react';
 
 const Recommendations = () => {
-  const [selectedCareer, setSelectedCareer] = useState(null);
+  const [careerRecommendations, setCareerRecommendations] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filterBy, setFilterBy] = useState('all');
   const [sortBy, setSortBy] = useState('confidence');
   const [showDetails, setShowDetails] = useState({});
 
-  // Mock data - in real app, this would come from your API
+  // Static user profile (replace with real auth data if needed)
   const userProfile = {
     name: "Alex Johnson",
     interests: ["Technology", "Data Analysis", "Problem Solving"],
@@ -38,147 +26,45 @@ const Recommendations = () => {
     }
   };
 
-  const careerRecommendations = [
-    {
-      id: 1,
-      title: "Data Scientist",
-      confidence: 94,
-      category: "Technology",
-      description: "Analyze complex data to help companies make strategic decisions using statistical methods and machine learning.",
-      salaryRange: "$85,000 - $130,000",
-      jobGrowth: "+22% (Much faster than average)",
-      workStyle: "Team-based with independent analysis",
-      location: "Remote/Hybrid friendly",
-      skills: ["Python", "R", "SQL", "Machine Learning", "Statistics"],
-      matchReasons: [
-        "Strong match with your Python skills",
-        "Aligns with your interest in data analysis",
-        "Fits your preference for hybrid work",
-        "High salary potential matches your goals"
-      ],
-      keyTasks: [
-        "Collect and analyze large datasets",
-        "Build predictive models",
-        "Present insights to stakeholders",
-        "Collaborate with cross-functional teams"
-      ],
-      companies: ["Google", "Netflix", "Airbnb", "Microsoft", "Amazon"]
-    },
-    {
-      id: 2,
-      title: "Full Stack Developer",
-      confidence: 89,
-      category: "Technology",
-      description: "Build end-to-end web applications, working on both frontend user interfaces and backend systems.",
-      salaryRange: "$70,000 - $120,000",
-      jobGrowth: "+13% (Faster than average)",
-      workStyle: "Collaborative team environment",
-      location: "Remote/Hybrid/On-site",
-      skills: ["JavaScript", "React", "Node.js", "Databases", "Git"],
-      matchReasons: [
-        "Perfect match with your JavaScript skills",
-        "Aligns with your technology interests",
-        "Flexible work arrangements available",
-        "Strong job market demand"
-      ],
-      keyTasks: [
-        "Develop responsive web applications",
-        "Design and implement APIs",
-        "Collaborate with designers and product managers",
-        "Debug and optimize application performance"
-      ],
-      companies: ["Spotify", "Shopify", "Stripe", "Figma", "Discord"]
-    },
-    {
-      id: 3,
-      title: "Product Manager",
-      confidence: 78,
-      category: "Business",
-      description: "Guide product development from conception to launch, working with engineering, design, and business teams.",
-      salaryRange: "$95,000 - $150,000",
-      jobGrowth: "+19% (Much faster than average)",
-      workStyle: "Highly collaborative",
-      location: "Hybrid preferred",
-      skills: ["Strategic Thinking", "Communication", "Data Analysis", "Leadership"],
-      matchReasons: [
-        "Strong communication skills are essential",
-        "Combines technology and business interests",
-        "Leadership potential identified",
-        "Hybrid work options available"
-      ],
-      keyTasks: [
-        "Define product roadmap and strategy",
-        "Conduct market research",
-        "Coordinate with development teams",
-        "Analyze user feedback and metrics"
-      ],
-      companies: ["Meta", "Uber", "Slack", "Zoom", "Notion"]
-    },
-    {
-      id: 4,
-      title: "UX/UI Designer",
-      confidence: 72,
-      category: "Design",
-      description: "Create intuitive and engaging user experiences for digital products through research and design.",
-      salaryRange: "$65,000 - $110,000",
-      jobGrowth: "+13% (Faster than average)",
-      workStyle: "Collaborative with creative autonomy",
-      location: "Remote/Hybrid friendly",
-      skills: ["Design Thinking", "Figma", "User Research", "Prototyping"],
-      matchReasons: [
-        "Problem-solving skills translate well",
-        "Growing interest in user experience",
-        "Creative and analytical balance",
-        "Flexible work arrangements"
-      ],
-      keyTasks: [
-        "Conduct user research and testing",
-        "Create wireframes and prototypes",
-        "Collaborate with developers",
-        "Design system maintenance"
-      ],
-      companies: ["Adobe", "Figma", "Canva", "Dribbble", "InVision"]
-    },
-    {
-      id: 5,
-      title: "DevOps Engineer",
-      confidence: 68,
-      category: "Technology",
-      description: "Streamline development processes and manage infrastructure to ensure reliable software deployment.",
-      salaryRange: "$80,000 - $140,000",
-      jobGrowth: "+21% (Much faster than average)",
-      workStyle: "Cross-functional collaboration",
-      location: "Remote friendly",
-      skills: ["AWS", "Docker", "Kubernetes", "Python", "Linux"],
-      matchReasons: [
-        "Technical skills foundation",
-        "Problem-solving orientation",
-        "Growing field with high demand",
-        "Remote work opportunities"
-      ],
-      keyTasks: [
-        "Automate deployment processes",
-        "Monitor system performance",
-        "Manage cloud infrastructure",
-        "Collaborate with development teams"
-      ],
-      companies: ["AWS", "Docker", "HashiCorp", "GitLab", "Datadog"]
-    }
-  ];
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/recommend", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            interests: userProfile.interests,
+            skills: userProfile.skills,
+            preferences: userProfile.preferences
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch recommendations");
+        }
+
+        const data = await response.json();
+        setCareerRecommendations(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRecommendations();
+  }, []);
 
   const filteredRecommendations = careerRecommendations
-    .filter(career => filterBy === 'all' || career.category.toLowerCase() === filterBy)
+    .filter(career => filterBy === 'all' || career.category?.toLowerCase() === filterBy)
     .sort((a, b) => {
-      if (sortBy === 'confidence') return b.confidence - a.confidence;
-      if (sortBy === 'salary') return b.salaryRange.localeCompare(a.salaryRange);
-      return a.title.localeCompare(b.title);
+      if (sortBy === 'confidence') return (b.match_score || 0) - (a.match_score || 0);
+      if (sortBy === 'salary') return b.salaryRange?.localeCompare(a.salaryRange);
+      return a.role?.localeCompare(b.role);
     });
 
   const toggleDetails = (id) => {
-    setShowDetails(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
+    setShowDetails(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
   const getConfidenceColor = (confidence) => {
@@ -188,13 +74,10 @@ const Recommendations = () => {
     return 'text-gray-400 bg-gray-500/20';
   };
 
-  const getConfidenceWidth = (confidence) => {
-    return `${confidence}%`;
-  };
+  const getConfidenceWidth = (confidence) => `${confidence}%`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
-      {/* Header */}
       <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
@@ -231,25 +114,20 @@ const Recommendations = () => {
               <p className="text-gray-300">Profile analyzed successfully</p>
             </div>
           </div>
-          
           <div className="grid md:grid-cols-4 gap-4 mt-6">
             <div>
               <h3 className="font-semibold text-sm text-gray-300 mb-2">TOP INTERESTS</h3>
               <div className="flex flex-wrap gap-1">
-                {userProfile.interests.map(interest => (
-                  <span key={interest} className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">
-                    {interest}
-                  </span>
+                {userProfile.interests.map((i) => (
+                  <span key={i} className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">{i}</span>
                 ))}
               </div>
             </div>
             <div>
               <h3 className="font-semibold text-sm text-gray-300 mb-2">KEY SKILLS</h3>
               <div className="flex flex-wrap gap-1">
-                {userProfile.skills.slice(0, 3).map(skill => (
-                  <span key={skill} className="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">
-                    {skill}
-                  </span>
+                {userProfile.skills.slice(0, 3).map((s) => (
+                  <span key={s} className="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">{s}</span>
                 ))}
                 {userProfile.skills.length > 3 && (
                   <span className="px-2 py-1 bg-gray-500/20 text-gray-400 rounded text-xs">
@@ -269,14 +147,12 @@ const Recommendations = () => {
           </div>
         </div>
 
-        {/* Filters and Sort */}
+        {/* Filters */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-gray-400" />
-              <select 
-                value={filterBy}
-                onChange={(e) => setFilterBy(e.target.value)}
+              <select value={filterBy} onChange={(e) => setFilterBy(e.target.value)}
                 className="px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="all">All Categories</option>
@@ -287,9 +163,7 @@ const Recommendations = () => {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-400">Sort by:</span>
-              <select 
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
                 className="px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="confidence">Match Confidence</option>
@@ -298,159 +172,68 @@ const Recommendations = () => {
               </select>
             </div>
           </div>
-          
           <div className="text-sm text-gray-400">
             Showing {filteredRecommendations.length} of {careerRecommendations.length} recommendations
           </div>
         </div>
 
-        {/* Career Cards */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          {filteredRecommendations.map((career) => (
-            <div key={career.id} className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden hover:border-white/30 transition-all">
-              {/* Card Header */}
-              <div className="p-6 pb-4">
+        {/* Conditional Display */}
+        {isLoading ? (
+          <div className="text-center text-gray-300 py-20">Loading recommendations...</div>
+        ) : error ? (
+          <div className="text-center text-red-400 py-20">Error: {error}</div>
+        ) : (
+          <div className="grid lg:grid-cols-2 gap-6">
+            {filteredRecommendations.map((career, index) => (
+              <div key={index} className="bg-white/10 rounded-2xl border border-white/20 p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold">{career.title}</h3>
-                      <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">
-                        {career.category}
-                      </span>
-                    </div>
-                    <p className="text-gray-300 text-sm mb-4">{career.description}</p>
+                  <div>
+                    <h3 className="text-xl font-bold">{career.role}</h3>
+                    <p className="text-gray-300 text-sm mt-2">{career.description}</p>
                   </div>
-                  <div className="ml-4 text-right">
-                    <div className={`px-3 py-1 rounded-full text-sm font-semibold ${getConfidenceColor(career.confidence)}`}>
-                      {career.confidence}% Match
-                    </div>
+                  <div className={`px-3 py-1 rounded-full text-sm font-semibold ${getConfidenceColor(career.match_score)}`}>
+                    {career.match_score}% Match
                   </div>
                 </div>
-
-                {/* Confidence Bar */}
-                <div className="mb-4">
-                  <div className="w-full bg-white/20 rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000"
-                      style={{ width: getConfidenceWidth(career.confidence) }}
-                    />
-                  </div>
+                <div className="w-full bg-white/20 rounded-full h-2 mb-4">
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" style={{ width: getConfidenceWidth(career.match_score) }} />
                 </div>
-
-                {/* Quick Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="flex items-center gap-2">
-                    <DollarSign className="w-4 h-4 text-green-400" />
-                    <span className="text-sm">{career.salaryRange}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-blue-400" />
-                    <span className="text-sm">{career.jobGrowth}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-purple-400" />
-                    <span className="text-sm">{career.workStyle}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-orange-400" />
-                    <span className="text-sm">{career.location}</span>
-                  </div>
+                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                  <div className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-green-400" />{career.salaryRange}</div>
+                  <div className="flex items-center gap-2"><TrendingUp className="w-4 h-4 text-blue-400" />{career.growthRate}</div>
+                  <div className="flex items-center gap-2"><Users className="w-4 h-4 text-purple-400" />{career.workStyle}</div>
+                  <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-orange-400" />{career.location}</div>
                 </div>
-
-                {/* Match Reasons */}
-                <div className="mb-4">
-                  <h4 className="font-semibold text-sm mb-2 flex items-center gap-2">
-                    <Lightbulb className="w-4 h-4 text-yellow-400" />
-                    Why this matches you:
-                  </h4>
-                  <ul className="space-y-1">
-                    {career.matchReasons.slice(0, 2).map((reason, index) => (
-                      <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
-                        <CheckCircle className="w-3 h-3 text-green-400 mt-0.5 flex-shrink-0" />
-                        {reason}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Action Buttons */}
                 <div className="flex items-center gap-3">
-                  <button 
-                    onClick={() => toggleDetails(career.id)}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all"
-                  >
+                  <button onClick={() => toggleDetails(index)} className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg">
                     <BookOpen className="w-4 h-4" />
-                    {showDetails[career.id] ? 'Hide Details' : 'View Details'}
+                    {showDetails[index] ? 'Hide Details' : 'View Details'}
                   </button>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg transition-all">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
                     <Target className="w-4 h-4" />
                     Get Learning Path
                   </button>
                 </div>
-              </div>
-
-               {/* Expandable Details */}
-              {showDetails[career.id] && (
-                <div className="px-6 pb-6 border-t border-white/20">
-                  <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <Briefcase className="w-4 h-4" />
-                        Key Responsibilities
-                      </h4>
-                      <ul className="space-y-2">
-                        {career.keyTasks.map((task, index) => (
-                          <li key={index} className="text-sm text-gray-300 flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
-                            {task}
-                          </li>
-                        ))}
-                      </ul>
+                {showDetails[index] && (
+                  <div className="mt-6">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2"><Star className="w-4 h-4" />Skills</h4>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {career.skills.map((s) => (
+                        <span key={s} className="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">{s}</span>
+                      ))}
                     </div>
-                    <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <Star className="w-4 h-4" />
-                        Required Skills
-                      </h4>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {career.skills.map(skill => (
-                          <span key={skill} className="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <Globe className="w-4 h-4" />
-                        Top Companies
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {career.companies.map(company => (
-                          <span key={company} className="px-2 py-1 bg-gray-500/20 text-gray-300 rounded text-xs">
-                            {company}
-                          </span>
-                        ))}
-                      </div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2"><Globe className="w-4 h-4" />Top Companies</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {career.companies.map((c) => (
+                        <span key={c} className="px-2 py-1 bg-gray-500/20 text-gray-300 rounded text-xs">{c}</span>
+                      ))}
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-12 text-center">
-          <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 border border-blue-500/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Choose a career path that excites you and get a personalized learning roadmap to help you achieve your goals.
-            </p>
-            <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg font-semibold transition-all">
-              Create Learning Path
-              <ArrowRight className="w-5 h-5" />
-            </button>
+                )}
+              </div>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
