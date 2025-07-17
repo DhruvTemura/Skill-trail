@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
 
   pythonProcess.on('close', (code) => {
     try {
+      console.log('Raw Python output:', dataBuffer);
       const recommendations = JSON.parse(dataBuffer);
       res.json(recommendations);
     } catch (err) {

@@ -7,7 +7,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Read JSON input from Node.js
 user_data = json.loads(sys.stdin.read())
+print("📥 Received user data:", user_data, file=sys.stderr)
 
+# Sample role dataset
 roles_data = pd.DataFrame([
     {
         "role": "Data Scientist",
@@ -35,15 +37,16 @@ roles_data = pd.DataFrame([
     }
 ])
 
+# Combine user inputs into a single text string
 user_text = " ".join(
     user_data.get("skills", []) +
     user_data.get("interests", []) +
     [user_data.get("education", ""), user_data.get("preferred_workstyle", "")]
 )
 
+# TF-IDF and cosine similarity
 vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1, 2))
 tfidf_matrix = vectorizer.fit_transform((roles_data["role"] + " " + roles_data["description"]).tolist() + [user_text])
-
 cosine_sim = cosine_similarity(tfidf_matrix[-1], tfidf_matrix[:-1])[0]
 cosine_sim = [score if score > 0 else 0.01 for score in cosine_sim]
 
@@ -52,21 +55,23 @@ top_indices = cosine_sim.argsort()[-3:][::-1]
 top_roles = roles_data.iloc[top_indices]
 top_scores = cosine_sim[top_indices]
 
+# Format output
 recommendations = []
 for i, row in top_roles.iterrows():
     recommendations.append({
         "role": row["role"],
         "match_score": round(top_scores[list(top_roles.index).index(i)] * 100, 2),
-        "summary": row["description"],
-        "salary_range": row["salary_range"],
-        "growth_rate": row["growth_rate"],
-        "work_mode": row["work_mode"],
-        "work_type": row["work_type"],
-        "match_reasons": [
-            f"Strong match with your skills in {user_data.get('skills', [''])[0]}",
-            f"Aligns with your interest in {user_data.get('interests', [''])[0]}"
-        ]
+        "description": row["description"],  # Matches frontend naming
+        "salaryRange": row["salary_range"],  # Matches frontend
+        "growthRate": row["growth_rate"],
+        "workStyle": row["work_type"],
+        "location": row["work_mode"],
+        "skills": user_data.get("skills", []),  # Echoing back user skills
+        "companies": ["Google", "Microsoft", "Meta"]  # Placeholder companies
     })
 
-# Send back result to Node.js
+# Debug print before sending to Node.js
+print("📤 Sending recommendations:", recommendations, file=sys.stderr)
+
+# Send JSON response to Node.js
 print(json.dumps(recommendations))
