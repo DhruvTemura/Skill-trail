@@ -1,15 +1,17 @@
+// src/components/ProfileForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const ProfilePage = () => {
+function ProfileForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     skills: '',
     interests: '',
-    workstyle: ''
+    workstyle: '',
   });
-
-  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,75 +21,42 @@ const ProfilePage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/recommend', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const result = await response.json();
-      console.log('Received recommendations:', result);
-      
-      navigate('/recommendations', { state: { data: result, profile: formData } });
-    } catch (error) {
-      console.error('Error submitting profile:', error);
+      const res = await axios.post('http://localhost:5000/recommend', formData);
+      const recommendations = res.data;
+      navigate('/recommendations', { state: { recommendations } });
+    } catch (err) {
+      setError('Error fetching recommendations. Try again.');
+      console.error(err);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-600 p-6">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Tell us about yourself</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-md w-full max-w-lg">
+        <h2 className="text-2xl font-bold mb-6 text-center">Career Profile</h2>
         
         <label className="block mb-4">
           <span className="text-gray-700">Name</span>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+          <input type="text" name="name" onChange={handleChange} value={formData.name} required
+                 className="mt-1 p-2 block w-full border rounded-md" />
         </label>
 
         <label className="block mb-4">
-          <span className="text-gray-700">Skills</span>
-          <input
-            type="text"
-            name="skills"
-            value={formData.skills}
-            onChange={handleChange}
-            required
-            placeholder="e.g., Python, React, ML"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+          <span className="text-gray-700">Skills (comma separated)</span>
+          <input type="text" name="skills" onChange={handleChange} value={formData.skills} required
+                 className="mt-1 p-2 block w-full border rounded-md" />
         </label>
 
         <label className="block mb-4">
-          <span className="text-gray-700">Interests</span>
-          <input
-            type="text"
-            name="interests"
-            value={formData.interests}
-            onChange={handleChange}
-            required
-            placeholder="e.g., AI, Fintech, Design"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
+          <span className="text-gray-700">Interests (comma separated)</span>
+          <input type="text" name="interests" onChange={handleChange} value={formData.interests} required
+                 className="mt-1 p-2 block w-full border rounded-md" />
         </label>
 
         <label className="block mb-6">
           <span className="text-gray-700">Preferred Workstyle</span>
-          <select
-            name="workstyle"
-            value={formData.workstyle}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          >
+          <select name="workstyle" onChange={handleChange} value={formData.workstyle} required
+                  className="mt-1 p-2 block w-full border rounded-md">
             <option value="">Select</option>
             <option value="Remote">Remote</option>
             <option value="On-site">On-site</option>
@@ -95,15 +64,14 @@ const ProfilePage = () => {
           </select>
         </label>
 
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-700 transition duration-300"
-        >
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+
+        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
           Get Recommendations
         </button>
       </form>
     </div>
   );
-};
+}
 
-export default ProfilePage;
+export default ProfileForm;
